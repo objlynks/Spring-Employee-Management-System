@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.objlynks.springboot.model.Employee;
 import com.objlynks.springboot.repository.EmployeeRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/")
 public class EmployeeController {
@@ -21,7 +22,7 @@ public class EmployeeController {
 	private EmployeeRepository  employeeRepository;
 
 	//get all employees Rest API
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@GetMapping("/employees")
 	public List<Employee> getAllEmployees(){
 		return employeeRepository.findAll();
