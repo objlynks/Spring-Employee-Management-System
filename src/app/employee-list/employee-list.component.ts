@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -9,23 +10,15 @@ import { Employee } from '../employee';
 export class EmployeeListComponent {
           
           employees: Employee[];
-          constructor(){}
+          constructor(private employeeService : EmployeeService){}
 
 
             ngOnInit(): void {
-              this.employees = [{
-                "id": 1,
-                "lastName" : "John",
-                "firstName": "Doe",
-                "emailId" : "johndoe12@gmail.com"
-              },
-              {
-                "id": 2,
-                "lastName" : "Doe",
-                "firstName": "John",
-                "emailId" : "doejoh@gmail.com"
-              }
-            ]
+              this.getEmployees();
             }
-          
-}
+                private getEmployees(){
+                  this.employeeService.getEmployeeList().subscribe(data =>{
+                    this.employees = data
+                  });
+                }
+              }
